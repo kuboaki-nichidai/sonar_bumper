@@ -1,0 +1,18 @@
+演習を進めると、下記のように、hakoniwaや実機の sdk/workspace の中と同じ構成になる。
+（実験したプログラムの置き場所と、同じ構成になる）
+
+codes
+|-- sample01.tar.gz
+|-- sample01
+|   |-- Makefile.inc
+|   |-- app.c
+|   |-- app.cfg
+|   |-- app.c~
+|   `-- app.h
+`-- sample01-01
+    |-- Makefile.inc
+    |-- app.c
+    |-- app.cfg
+    |-- app.c~
+    `-- app.h
+

@@ -1,0 +1,38 @@
+// HTMLやPDFなど媒体によって倍率の単位が異なるので、
+// それをこのファイルで吸収している
+//
+// `https://github.com/asciidoctor/asciidoctor.org/blob/master/docs/_includes/image-sizing.adoc`
+//
+ifdef::backend-html5[]
+:twoinches: width='360'
+:full-width: width='100%'
+:three-quarters-width: width='75%'
+:two-thirds-width: width='66%'
+:half-width: width='50%'
+:half-size:
+:one-thirds-width: width='33%'
+:one-quarters-width: width='25%'
+:thumbnail: width='60'
+endif::[]
+ifdef::backend-pdf[]
+:twoinches: pdfwidth='2in'
+:full-width: pdfwidth='100%'
+:three-quarters-width: pdfwidth='75%'
+:two-thirds-width: pdfwidth='66%'
+:half-width: pdfwidth='50%'
+:half-size: pdfwidth='50vw'
+:one-thirds-width: pdfwidth='33%'
+:one-quarters-width: pdfwidth='25%'
+:thumbnail: pdfwidth='10mm'
+endif::[]
+ifdef::backend-docbook5[]
+:twoinches: width='50mm'
+:full-width: scaledwidth='100%'
+:three-quarters-width: scaledwidth='75%'
+:two-thirds-width: scaledwidth='66%'
+:half-width: scaledwidth='50%'
+:half-size: width='50%'
+:one-thirds-width: scaledwidth='33%'
+:one-quarters-width: scaledwidth='25%'
+:thumbnail: width='10mm'
+endif::[]

@@ -1,0 +1,242 @@
+:encoding: utf-8
+:lang: ja
+:scripts: cjk
+:media: prepress
+:linkcss:
+:stylesdir: css
+:stylesheet: mystyle.css
+:sectanchors:
+:autofit-option:
+:experimental:
+:support-uri:
+:original-support-uri:
+:twoinches: width='360'
+:full-width: width='100%'
+:three-quarters-width: width='75%'
+:two-thirds-width: width='66%'
+:half-width: width='50%'
+:half-size:
+:one-thirds-width: width='33%'
+:one-quarters-width: width='25%'
+:thumbnail: width='60'
+:imagesdir: images
+:sourcesdir: codes
+:icons: font
+:hide-uri-scheme!:
+:figure-caption: 図
+:example-caption: リスト
+:table-caption: 表
+:appendix-caption: 付録
+:xrefstyle: short
+:section-refsig:
+:chapter-refsig:
+
+
+= sonar_bumper
+
+NOTE: この演習は、グループで成果に協力しつつ、各自が成果物を作成します。
+
+複数のライドストップを巡って周回を繰り返せるようにします。
+
+== 準備
+
+. `sample04` のコードをディレクトリごと複製して `sonar_bumper` を用意しなさい。
+  * `sample04_sonar_bumper` は、`sonar_bumper` の中に置きます。
+. `sample04.asta` を複製して、`sample04_sonar_bumper.asta` を用意しなさい
+  * `sample04_sonar_bumper.asta` は、`sonar_bumper` の中に置きます。
+. クラス図の名前を、 `sample04_sonar_bumperのクラス図` に変更しなさい。
+
+
+== やりたいこと
+
+* オートライドは、自身の前方、距離A（15cm）に障害物や前を走行するオートライドを認識したら、徐行する
+** 距離Aより大きくなった場合には、通常走行に戻る
+* オートライドは、前方の障害やオートライドまでの距離が距離B（7cm）に達した場合、は停止する
+** 距離Bより大きくなった場合には、徐行に戻る
+
+
+.障害物や前を走行するオートライドを認識したら徐行する
+image::sonar_bumper_function_01.png[width=50%]
+
+
+.障害やオートライドまでの距離が距離B（7cm）に達した場合は停止する
+image::sonar_bumper_function_02.png[width=50%]
+
+
+NOTE: 実験においては、障害物や前方のライドの代替はライドスポット同様、パックの箱などを利用する。ときどき他のフループと貸し借りをして、慈済のライドにおいても同じ動作をするかどうか、確認する。
+
+
+== モデル図を修正する(1)
+
+
+=== sample04_sonar_bumperのクラス図を修正する
+
+. クラス図を参照して、`wall_detector` クラスを元に、ライドストップを識別するクラス `sonar_bumper` を作成しなさい
+. 上記のクラスに、「障害までの距離を測定する」操作 `get_distance` も追加しなさい。
+** これは、ほぼ `ultrasonic_sensor` のラッパーになるだろう。
+. 前方の障害を距離Aで識別したかどうか調べる操作 `is_detected_a` を用意しなさい。
+. 前方の障害を距離Bで識別したかどうか調べる操作 `is_detected_b` を用意しなさい。
+
+
+=== sample04_sonar_bumperのクラス図を保存しなさい
+
+作成したクラス図を `sample04_sonar_bumper_class_01.png` として `images` ディレクトリに保存しなさい。
+
+. 「ツール＞画像出力＞現在の図」で、保存用ダイアログを開く。
+. 作成したクラス図を `sample04_sonar_bumper_class_01.png` として `images` ディレクトリに保存する（ダミー画像ファイルになっているので、置き換える）
+
+.`sample04_sonar_bumper` のクラス図（保存できたら置き換わる）
+image::sample04_sonar_bumper_class_01.png[{full-width}]
+
+
+NOTE: 編集したら、ターミナルからgitコマンドを使ってコミットしなさい。
+
+=== sample04_sonar_bumperのステートマシン図を修正する
+
+* `auto_ride` クラスに追加した「人を乗せて運ぶ働きの操作」のステートマシン図を、 `porter` の `transport` のステートマシン図を参考にして作成しなさい。
+** ステートマシン図の名前も対応する操作名を反映してつけなさい。
+**  どんな図を作成するかについては、 `sample_code_and_model` で作成したステートマシン図が参考になるだろう。
+* 必要なら、他のクラスの操作についても、ステートマシン図も作成しなさい。
+
+
+=== sample04_sonar_bumperのステートマシン図を保存しなさい
+
+作成したクラス図を `sample04_sonar_bumper_stm_01.png` として `images` ディレクトリに保存しなさい。
+
+* 「ツール＞画像出力＞現在の図」で、保存用ダイアログを開く。
+** 作成したクラス図を `sample04_sonar_bumper_stm_01.png` として `images` ディレクトリに保存しなさい。
+
+.`auto_ride` の（追加した操作）のステートマシン図（保存できたら置き換わる）
+image::sample04_sonar_bumper_stm_01.png[{full-width}]
+
+* もし、他にもステートマシン図を作成したのであれば、このファイル（ `README.adoc` ）を編集して、下記にそのステートマシン図の画像を示しなさい。
+
+.`XXXX` クラスの操作 `YYYY` のステートマシン図
+image::sample04_sonar_bumper_stm_XXXX_YYYY_01.png[{full-width}]
+
+
+NOTE: 編集したら、ターミナルからgitコマンドを使ってコミットしなさい。
+
+=== sample04_sonar_bumperを動かしてみなさい
+
+.`sample04_sonar_bumper` を実行する
+. 経路に沿って走行中、前方の距離Aにダミーカー（もしくは障害物）があると徐行する。
+. さらにそのまま走行し、前方の距離Bにダミーカー（もしくは障害物）があると停止する。
+. 前方のダミーカーを（手で）前進させ、間隔が距離Bより長くなると、徐行する。
+. さらにそのままダミーカーを前進させ、間隔が距離Aより長くなると、通常の速度で経路に沿って走行する。
+
+== 対策を検討する
+
+修正は、みんなの期待する通りに動作しただろうか。なにか問題が生じたのであれば、対策を検討する。
+
+=== sample04_sonar_bumperの課題を挙げなさい
+
+どんな課題が見つかったか、このファイル（ `README.adoc` ）を編集して下記に箇条書きしなさい。
+
+[example]
+.`sample04_sonar_bumper` の課題
+----
+* ここに課題を書く。
+* ここに課題を書く。
+* ここに課題を書く。
+* ここに課題を書く。
+----
+
+=== sample04_sonar_bumperを対策を検討しなさい
+
+どんな対策をとればよさそうか、このファイル（ `README.adoc` ）を編集して下記に箇条書きしなさい。
+
+[example]
+.`sample04_sonar_bumper` の対策案
+----
+* ここに対策案を書く。
+* ここに対策案を書く。
+* ここに対策案を書く。
+* ここに対策案を書く。
+----
+
+== 実験、調査する
+
+アイディアを試して、その中でうまくいく方法を選ぶ。
+
+=== 検討した対策が妥当か実験しなさい
+
+検討した対策を、実際にプログラムを作って動かしてみなさい。
+
+もし、うまくいかないなら、別の方法を調査し、実験しなさい。
+
+NOTE: 実験したものが残せるよう、なにか修正して実験したら、次のことを試す前にコミットしておきなさい（それが、手戻りできるための方法だから）。
+
+=== sample04_sonar_bumperの対策を決定しなさい
+
+結論として、どのような対策をとることになったのか、このファイル（ `README.adoc` ）を編集して説明しなさい。
+
+[example]
+.最終的な `sample04_sonar_bumper` の対策
+----
+* ここに最終的な対策を書く。
+* それを選択した理由を書く。
+----
+
+NOTE: ここで、対策を決定したことをコミットしておきなさい。
+
+== モデル図を修正する(2)
+
+調査、実験の結果決定した方法に合わせて、モデル図を更新します。
+
+=== sample04_sonar_bumperのクラス図を修正する
+
+IMPORTANT: もしまだ、前の段階の画像、Programを保存した後のコミットが済んでいないなら、この修正の前に保存してコミットしておきなさい（それが、手戻りできる地点を確保するための方法だから）。
+
+決定した方法に合うよう、クラス図を更新しなさい。
+
+* これまでのクラスだけで実現できるかどうか考えなさい。
+** これまでのクラスだけでは不足する場合には、クラスを追加しなさい。
+* クラス名を吟味しなさい。
+** 現状のクラスの名前を見直したほうがよいなら、名前を変えてみなさい。
+* クラス間の関連が妥当か確認しなさい。
+** 使う側と使われる側の関係が成り立っているか、それぞれのクラスについて確認して、必要なら関連を変更します。
+
+=== sample04_sonar_bumperのクラス図を保存しなさい
+
+作成したクラス図を `sample04_sonar_bumper_class_02.png` として `images` ディレクトリに保存しなさい。
+
+. 「ツール＞画像出力＞現在の図」で、保存用ダイアログを開く。
+. 作成したクラス図を `sample04_sonar_bumper_class_02.png` として `images` ディレクトリに保存する（ダミー画像ファイルになっているので、置き換える）
+
+.`sample04_sonar_bumper` のクラス図（保存できたら置き換わる）
+image::sample04_sonar_bumper_class_02.png[{full-width}]
+
+
+NOTE: 編集したら、ターミナルからgitコマンドを使ってコミットしなさい。
+
+=== sample04_sonar_bumperのステートマシン図を修正する
+
+* `auto_ride` クラスに用意した「人を乗せて運ぶ働きの操作」のステートマシン図を、 `porter` の `transport` のステートマシン図を参考にして作成しなさい。
+* 必要なら、他のクラスの操作についても、ステートマシン図も作成しなさい。
+
+
+=== sample04_sonar_bumperのステートマシン図を保存しなさい
+
+作成したクラス図を `sample04_sonar_bumper_stm_02.png` として `images` ディレクトリに保存しなさい。
+
+. 「ツール＞画像出力＞現在の図」で、保存用ダイアログを開く。
+* 作成したクラス図を `sample04_sonar_bumper_stm_02.png` として `images` ディレクトリに保存しなさい。
+
+.`auto_ride` の（追加した操作）のステートマシン図（保存できたら置き換わる）
+image::sample04_sonar_bumper_stm_02.png[{full-width}]
+
+* もし、他にもステートマシン図を作成したのであれば、このファイル（ `README.adoc` ）を編集して、下記にそのステートマシン図の画像を示しなさい。
+
+.`XXXX` クラスの操作 `YYYY` のステートマシン図
+image::sample04_sonar_bumper_stm_XXXX_YYYY_02.png[{full-width}]
+
+NOTE: 編集したら、ターミナルからgitコマンドを使ってコミットしなさい。
+
+=== sample04_sonar_bumperをプッシュしなさい
+
+これまでの修正を（コミットしていないならコミットして）、リモート（GitHubのサーバー）へプッシュしなさい。
+
+* プッシュが成功したことを、 `git log` で確認しなさい。
+* GitHubの各自の `sample04_sonar_bumper` のページ（リポジトリ名は `sample04_sonar_bumper_A` のように各グループの名前になっているだろう）を確認して、プッシュが成功していることを確認しなさい。
+* 上記ウェブページ上のコミットログを参照して、作業が保存できていたことを確認なさい。
